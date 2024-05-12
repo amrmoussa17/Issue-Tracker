@@ -1,16 +1,16 @@
-"use client";
-import Link from "next/link";
-import React from "react";
-import { AiFillBug } from "react-icons/ai";
-import { usePathname } from "next/navigation";
-import classNames from "classnames";
+"use client"
+import Link from "next/link"
+import React from "react"
+import { AiFillBug } from "react-icons/ai"
+import { usePathname } from "next/navigation"
+import classNames from "classnames"
 
 const NavBar = () => {
   const links = [
     { label: "Dashboard", href: "/" },
-    { label: "Issues", href: "/issues" },
-  ];
-  const currentPath = usePathname();
+    { label: "Issues", href: "/issues/list" },
+  ]
+  const currentPath = usePathname()
   return (
     <nav className="flex space-x-6 border-b h-14 items-center px-5 mb-5">
       <Link href="/">
@@ -33,7 +33,7 @@ const NavBar = () => {
         ))}
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar
