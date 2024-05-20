@@ -13,15 +13,6 @@ interface Props {
   }
 }
 const IssuesPage = async ({ searchParams }: Props) => {
-  const statuses = Object.values(Status)
-  const statusFilter = statuses.includes(searchParams.status)
-    ? searchParams.status
-    : undefined
-  const issues = await prisma.issue.findMany({
-    where: {
-      status: statusFilter,
-    },
-  })
   const columns: { label: string; value: keyof Issue; className?: string }[] = [
     { label: "Title", value: "title" },
     { label: "Status", value: "status", className: "hidden md:table-cell" },
@@ -31,6 +22,23 @@ const IssuesPage = async ({ searchParams }: Props) => {
       className: "hidden md:table-cell",
     },
   ]
+
+  const statuses = Object.values(Status)
+  const statusFilter = statuses.includes(searchParams.status)
+    ? searchParams.status
+    : undefined
+
+  const orderBy = columns.map((col) => col.value).includes(searchParams.orderBy)
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined
+
+  const issues = await prisma.issue.findMany({
+    where: {
+      status: statusFilter,
+    },
+    orderBy,
+  })
+
   return (
     <div>
       <IssuesActions />
