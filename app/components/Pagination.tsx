@@ -16,7 +16,6 @@ interface Props {
 const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  console.log("log state is", searchParams)
 
   const pageCount = Math.ceil(itemsCount / pageSize)
   if (pageCount <= 1) return null
