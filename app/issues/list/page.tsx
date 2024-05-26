@@ -1,10 +1,9 @@
-import { Flex, Link, Table } from "@radix-ui/themes"
-import prisma from "@/prisma/client"
-import IssueStatusBadge from "../../components/IssueStatusBadge"
-import IssuesActions from "./IssuesActions"
-import { Issue, Status } from "@prisma/client"
-import { ArrowUpIcon } from "@radix-ui/react-icons"
 import Pagination from "@/app/components/Pagination"
+import prisma from "@/prisma/client"
+import { Status } from "@prisma/client"
+import { Flex } from "@radix-ui/themes"
+import { Metadata } from "next"
+import IssuesActions from "./IssuesActions"
 import IssueTable, { columnNames, IssueQuery } from "./IssueTable"
 
 interface Props {
@@ -50,5 +49,10 @@ const IssuesPage = async ({ searchParams }: Props) => {
 }
 
 export const dynamic = "force-dynamic"
+
+export const metaData: Metadata = {
+  title: "Issue Tracker - Issue List",
+  description: "view all project issues",
+}
 
 export default IssuesPage
